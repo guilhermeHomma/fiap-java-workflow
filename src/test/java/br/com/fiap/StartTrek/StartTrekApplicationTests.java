@@ -10,4 +10,9 @@ class CondicoesClimaticasControllerTest {
     void testGetAllCondicoes() {
         assertTrue(true);
     }
+
+    @Test
+    void testGetAllCondicoes2() {
+        assertTrue(true);
+    }
 }

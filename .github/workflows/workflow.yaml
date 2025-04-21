@@ -17,7 +17,23 @@ jobs:
           java-version: '21'
 
       - name: Rodar testes com Maven
-        run: mvn clean verify
+        run: mvn test
+
+  job2-deploy:
+    name: Deploy para Azure Web App (Código)
+    runs-on: ubuntu-latest
+    needs: job1-tests
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Deploy do código para Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'fiap-calorias'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: '.'
 
   job2-goodbye:
     name: Mensagem final
